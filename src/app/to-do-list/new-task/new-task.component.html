@@ -1,0 +1,18 @@
+
+<div class="row">
+  <div class="col-md-6">
+      <form (ngSubmit)="addTask(f)" #f="ngForm">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" name="name" ngModel>
+           <label for="description">Description</label>
+           <input type="text" class="form-control" name="description" ngModel>
+           <label for="duedate">Due date</label>
+           <input type="text" class="form-control" name="duedate" ngModel>
+           <label for="status">Status</label>
+           <input type="text" class="form-control" name="status" ngModel>
+           <button type="submit" class="btn btn-primary">Save</button>
+         </form>
+         
+  </div>
+</div>
+
