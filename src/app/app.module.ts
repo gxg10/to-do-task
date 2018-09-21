@@ -7,6 +7,7 @@ import { ToDoItemComponent } from './to-do-list/to-do-item/to-do-item.component'
 import { AppRoutingModule } from './router-module';
 import { NewTaskComponent } from './to-do-list/new-task/new-task.component';
 import { FormsModule } from '@angular/forms';
+import { TaskService } from './task-service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
