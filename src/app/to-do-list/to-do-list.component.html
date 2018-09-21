@@ -10,7 +10,7 @@
   </div>
   <br>
   <div class="row">
-      <app-to-do-item *ngFor="let item of itemList"
-      [it]="item"></app-to-do-item>
+      <app-to-do-item *ngFor="let item of itemList; let i = index"
+      [it]="item" [index]="i"></app-to-do-item>
   </div>
 </div>
