@@ -3,13 +3,9 @@
     <h5 class="card-title">{{it.name}}</h5>
     <h6 class="card-subtitle mb-2 text-muted">Due date: {{it.due_date | date}}</h6>
     <h6 class="card-subtitle mb-2 text-muted">Status: {{it.status}}</h6>
-    <p class="card-text">
-        {{it.small_description}}
-    </p>
-    <a [routerLink]="[index]" routerLinkActive="active">aici</a>
-    <button class="btn btn-success" (click)="readTask()">Read</button>
-    <button class="btn btn-primary" (click)="editTask()">Edit</button>
-    <button class="btn btn-danger" (click)="deleteTask()">Delete</button>
+
+    <a [routerLink]="[index]" type="button" routerLinkActive="active"
+    class="btn btn-success">Read</a>
   </div>
 </div>
 
