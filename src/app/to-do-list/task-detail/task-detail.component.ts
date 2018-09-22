@@ -43,8 +43,4 @@ export class TaskDetailComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  
   }
-
-
-}

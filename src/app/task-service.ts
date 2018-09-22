@@ -3,17 +3,24 @@ import { Task } from './task-model';
 
 export class TaskService {
 
-    var_done = 'done';
-
     private tasks: Task[] = [
+
         new Task('Sa iei paine', 'paine graham feliata',
-        new Date('December 4, 2018 20:30:00')),
+        new Date('December 4, 2018, 20:30:00')),
         new Task('Aspirator', 'curatenie de paste',
-        new Date('September 22, 2018 21:20:00')),
+        new Date('September 22, 2018, 21:20:00')),
         new Task('Spalat Masina', 'curatenie de masina',
-        new Date('September 22, 2019 21:20:00'))
+        new Date('September 22, 2019, 21:20:00'))
+
 
       ];
+
+    sortTasks() {
+     const t = this.tasks.sort((a, b) =>
+        new Date(a.due_date).getTime()
+        - new Date(b.due_date).getTime());
+        return t;
+    }
 
     getTasks() {
         return this.tasks;

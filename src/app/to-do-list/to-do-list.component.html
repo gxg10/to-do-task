@@ -6,12 +6,13 @@
   <br>
   <div class="row">
     <div class="com-sm-4 offset-md-4">
-        <button class="btn" (click)="newTask()">New</button>
-        
+        <button class="btn" (click)="newTask()">New</button> 
+        <button class="btn" (click)="sort()">sort</button>       
     </div>
   </div>
   <br>
   <div class="row">
-        <app-to-do-item *ngFor="let item of itemList; let i = index"
+        <!-- <app-to-do-item *ngFor="let item of itemList | sortgrid: '-due_date'; let i = index" -->
+        <app-to-do-item *ngFor="let item of itemList ; let i = index"
         [it]="item" [index]="i"></app-to-do-item>
   </div>

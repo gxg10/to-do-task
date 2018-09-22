@@ -37,21 +37,14 @@ export class ToDoItemComponent implements OnInit {
     return st;
   }
 
-  calculate() {
-    if (this.getStatusTask(this.index) === 'neww') {
-      return {
-        btn: true,
-        'btn-primary': true
-      };
-    }
-  }
-
   getStatusTaskColor(status) {
     switch (status) {
       case 'new':
-      return 'orange';
+      return 'white';
       case 'done':
-      return 'black';
+      return 'red';
+      case 'overdue':
+      return 'green';
     }
   }
 

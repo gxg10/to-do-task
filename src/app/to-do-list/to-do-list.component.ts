@@ -10,7 +10,6 @@ import { TaskService } from '../task-service';
 })
 export class ToDoListComponent implements OnInit {
 
-
   itemList: Task[] = [];
 
   constructor(private router: Router,
@@ -18,11 +17,15 @@ export class ToDoListComponent implements OnInit {
 
   ngOnInit() {
     this.itemList = this.taskService.getTasks();
+    this.sort();
+  }
+
+  sort() {
+   this.taskService.sortTasks();
   }
 
   newTask() {
     this.router.navigate(['new-task']);
   }
-
 
 }
