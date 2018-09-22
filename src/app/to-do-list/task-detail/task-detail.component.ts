@@ -28,7 +28,7 @@ export class TaskDetailComponent implements OnInit {
   }
 
   editTask(index: number) {
-    this.router.navigate(['new-task']);
+    this.router.navigate(['new-task'], {relativeTo: this.route});
     // console
     
   }

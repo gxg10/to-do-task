@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgForm, FormGroup, FormControl } from '@angular/forms';
 import { Task } from '../../task-model';
 import { TaskService } from '../../task-service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-new-task',
@@ -14,12 +14,21 @@ export class NewTaskComponent implements OnInit {
   @Input() index: number;
   editMode = false;
   taskForm: FormGroup;
+  id: number;
 
   constructor(private taskService: TaskService,
-    private router: Router) { }
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.initTask();
+    this.route.params
+    .subscribe(
+      (params: Params) => {
+        this.id = +params['id'];
+        this.editMode = params['id'] != null;
+        this.initTask();
+      }
+    );
   }
 
   // addTask(form: NgForm) {
@@ -51,7 +60,7 @@ export class NewTaskComponent implements OnInit {
     let duedate = new Date('');
 
     if (this.editMode) {
-     const task = this.taskService.getOneTask(this.index);
+     const task = this.taskService.getOneTask(this.id);
      taskName = task.name;
      small_description = task.small_description;
      duedate = task.due_date;
