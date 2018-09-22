@@ -6,6 +6,9 @@
     <p class="card-text">
         {{it.small_description}}
     </p>
+    <a [routerLink]="[index]" routerLinkActive="active">aici</a>
+    <button class="btn btn-success" (click)="readTask()">Read</button>
+    <button class="btn btn-primary" (click)="editTask()">Edit</button>
     <button class="btn btn-danger" (click)="deleteTask()">Delete</button>
   </div>
 </div>

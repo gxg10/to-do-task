@@ -17,6 +17,10 @@ export class TaskService {
         return this.tasks;
     }
 
+    getOneTask(index: number) {
+        return this.tasks[index];
+    }
+
     addTask(task: Task) {
         this.tasks.push(task);
         console.log(this.tasks);

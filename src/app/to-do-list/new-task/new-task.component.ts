@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
+import { NgForm, FormGroup, FormControl } from '@angular/forms';
 import { Task } from '../../task-model';
 import { TaskService } from '../../task-service';
 import { Router } from '@angular/router';
@@ -11,20 +11,57 @@ import { Router } from '@angular/router';
 })
 export class NewTaskComponent implements OnInit {
 
+  @Input() index: number;
+  editMode = false;
+  taskForm: FormGroup;
+
   constructor(private taskService: TaskService,
     private router: Router) { }
 
   ngOnInit() {
+    this.initTask();
   }
 
-  addTask(form: NgForm) {
-    const name = form.value.name;
-    const description = form.value.description;
-    const duedate = form.value.duedate;
-    const n =  new Task(name, description, duedate);
-    console.log(n);
+  // addTask(form: NgForm) {
+  //   const name = form.value.name;
+  //   const small_description = form.value.small_description;
+  //   const duedate = form.value.duedate;
+  //   const n =  new Task(name, small_description, duedate);
+  //   console.log(n);
+  //   this.taskService.addTask(n);
+  //   this.router.navigate(['/']);
+  // }
+
+  onSubmit() {
+    console.log(this.taskForm.value);
+
+    const name = this.taskForm.value.name;
+    const small_desc = this.taskForm.value.small_description;
+    const duedate = this.taskForm.value.duedate;
+
+    const n = new Task(name, small_desc, duedate);
+
     this.taskService.addTask(n);
-    this.router.navigate(['/']);
+  }
+
+  private initTask() {
+
+    let taskName = '';
+    let small_description = '';
+    let duedate = new Date('');
+
+    if (this.editMode) {
+     const task = this.taskService.getOneTask(this.index);
+     taskName = task.name;
+     small_description = task.small_description;
+     duedate = task.due_date;
+    }
+
+    this.taskForm = new FormGroup({
+      'name' : new FormControl(taskName),
+      'small_description': new FormControl(small_description),
+      'duedate' : new FormControl(duedate)
+    });
   }
 
 }

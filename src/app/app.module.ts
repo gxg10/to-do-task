@@ -6,20 +6,23 @@ import { ToDoListComponent } from './to-do-list/to-do-list.component';
 import { ToDoItemComponent } from './to-do-list/to-do-item/to-do-item.component';
 import { AppRoutingModule } from './router-module';
 import { NewTaskComponent } from './to-do-list/new-task/new-task.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TaskService } from './task-service';
+import { TaskDetailComponent } from './to-do-list/task-detail/task-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToDoListComponent,
     ToDoItemComponent,
-    NewTaskComponent
+    NewTaskComponent,
+    TaskDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [TaskService],
   bootstrap: [AppComponent]
