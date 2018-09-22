@@ -24,4 +24,5 @@ export class ToDoListComponent implements OnInit {
     this.router.navigate(['new-task']);
   }
 
+
 }

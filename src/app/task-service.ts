@@ -3,6 +3,8 @@ import { Task } from './task-model';
 
 export class TaskService {
 
+    var_done = 'done';
+
     private tasks: Task[] = [
         new Task('Sa iei paine', 'paine graham feliata',
         new Date('December 4, 2018 20:30:00')),
@@ -26,8 +28,23 @@ export class TaskService {
         console.log(this.tasks);
     }
 
+    updateTask(index: number, newTask: Task) {
+        this.tasks[index] = newTask;
+    }
+
     deleteTask(index: number) {
         this.tasks.splice(index, 1);
+    }
+
+    doneTask(index: number) {
+        const tempTask = this.tasks[index];
+        tempTask.status = 'done';
+    }
+
+    getStatus(index: number) {
+        const tempTask = this.tasks[index];
+
+        return tempTask.status;
     }
 
 }

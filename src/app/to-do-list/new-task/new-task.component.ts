@@ -42,15 +42,28 @@ export class NewTaskComponent implements OnInit {
   // }
 
   onSubmit() {
-    console.log(this.taskForm.value);
 
-    const name = this.taskForm.value.name;
-    const small_desc = this.taskForm.value.small_description;
-    const duedate = this.taskForm.value.duedate;
+    if (this.editMode) {
 
-    const n = new Task(name, small_desc, duedate);
+      const name = this.taskForm.value.name;
+      const small_desc = this.taskForm.value.small_description;
+      const duedate = this.taskForm.value.duedate;
 
-    this.taskService.addTask(n);
+      const n = new Task(name, small_desc, duedate);
+
+      this.taskService.updateTask(this.id, n);
+    } else {
+      console.log(this.taskForm.value);
+
+      const name = this.taskForm.value.name;
+      const small_desc = this.taskForm.value.small_description;
+      const duedate = this.taskForm.value.duedate;
+
+      const n = new Task(name, small_desc, duedate);
+      this.taskService.addTask(n);
+    }
+
+
   }
 
   private initTask() {

@@ -12,9 +12,9 @@ export class ToDoItemComponent implements OnInit {
 
   @Input() it: Task;
   @Input() index: number;
+  
   constructor(private taskService: TaskService,
-    private router: Router,
-    private route: ActivatedRoute) { }
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -25,11 +25,34 @@ export class ToDoItemComponent implements OnInit {
   editTask(index: number) {
     this.router.navigate(['new-task']);
     // console
-    
+
   }
 
   deleteTask(index: number) {
       this.taskService.deleteTask(index);
+  }
+
+  getStatusTask(index: number) {
+    const st = this.taskService.getStatus(index);
+    return st;
+  }
+
+  calculate() {
+    if (this.getStatusTask(this.index) === 'neww') {
+      return {
+        btn: true,
+        'btn-primary': true
+      };
+    }
+  }
+
+  getStatusTaskColor(status) {
+    switch (status) {
+      case 'new':
+      return 'orange';
+      case 'done':
+      return 'black';
+    }
   }
 
 }

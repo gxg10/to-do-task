@@ -1,16 +1,17 @@
-<div class="container">
   <div class="row">
-    <div class="col-sm-8">
+    <div class="col-sm-8 offset-md-4">
       <h2>To do list</h2>
     </div>
   </div>
   <br>
   <div class="row">
-    <button class="btn" (click)="newTask()">New</button>
+    <div class="com-sm-4 offset-md-4">
+        <button class="btn" (click)="newTask()">New</button>
+        
+    </div>
   </div>
   <br>
   <div class="row">
-      <app-to-do-item *ngFor="let item of itemList; let i = index"
-      [it]="item" [index]="i"></app-to-do-item>
+        <app-to-do-item *ngFor="let item of itemList; let i = index"
+        [it]="item" [index]="i"></app-to-do-item>
   </div>
-</div>
