@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Task } from '../../task-model';
 import { TaskService } from '../../task-service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-new-task',
@@ -18,7 +19,8 @@ export class NewTaskComponent implements OnInit {
 
   constructor(private taskService: TaskService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    public datepipe: DatePipe) { }
 
   ngOnInit() {
     this.route.params
@@ -39,9 +41,9 @@ export class NewTaskComponent implements OnInit {
       const small_desc = this.taskForm.value.small_description;
       const duedate = this.taskForm.value.duedate;
 
-      const n = new Task(name, small_desc, duedate);
+      const newTask = new Task(name, small_desc, new Date(duedate));
 
-      this.taskService.updateTask(this.id, n);
+      this.taskService.updateTask(this.id, newTask);
       this.router.navigate(['..']);
     } else {
 
@@ -49,12 +51,11 @@ export class NewTaskComponent implements OnInit {
       const small_desc = this.taskForm.value.small_description;
       const duedate = this.taskForm.value.duedate;
 
-      const n = new Task(name, small_desc, new Date(duedate));
-      this.taskService.addTask(n);
+      const newTask = new Task(name, small_desc, new Date(duedate));
+      this.taskService.addTask(newTask);
       this.taskForm.reset();
       this.router.navigate(['..']);
     }
-
 
   }
 
@@ -62,13 +63,17 @@ export class NewTaskComponent implements OnInit {
 
     let taskName = '';
     let small_description = '';
-    let duedate = new Date('').setTime(0);
+    // let duedate = new Date();
+    // let duedate = new Date('').setTime(0);
+    let duedate = '';
 
     if (this.editMode) {
      const task = this.taskService.getOneTask(this.id);
      taskName = task.name;
      small_description = task.small_description;
-     duedate = task.due_date;
+     console.log('due date '+ this.datepipe.transform(task.due_date, 'yyyy.mm.dd hh:mm:ss'));
+    //  duedate = task.due_date.toString
+     duedate = this.datepipe.transform(new Date(task.due_date), 'yyyy-mm-dd hh:mm:ss');
     }
 
     this.taskForm = new FormGroup({

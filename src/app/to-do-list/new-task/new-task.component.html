@@ -1,4 +1,3 @@
-
 <div class="card casuta">
     <div class="card-body">
         <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
@@ -10,13 +9,11 @@
             formControlName="small_description" placeholder="description (max 20 characters)"
             class="form-control" rows="4"></textarea>
             <label for="duedate">Due date</label>
-            <label for="duedate">(ex: DD.MM.YYYY HH:MM:SS)</label>
+            <label for="duedate">(ex: YYYY:MM:DD HH:MM:SS)</label>
             <input type="text" id="duedate" formControlName="duedate" 
-            class="form-control" placeholder="ex: DD.MM.YYYY HH:MM:SS">
+            class="form-control" placeholder="ex: YYYY:MM:DD HH:MM:SS">
             <button type="submit" class="btn btn-success" [disabled]="!taskForm.valid">Save</button>
             </form>
-      
-      
     </div>
   </div>
 

@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TaskService } from './task-service';
 import { TaskDetailComponent } from './to-do-list/task-detail/task-detail.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [TaskService],
+  providers: [TaskService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

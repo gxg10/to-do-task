@@ -28,11 +28,6 @@ export class ToDoItemComponent implements OnInit {
       this.taskService.deleteTask(index);
   }
 
-  getStatusTask(index: number) {
-    const st = this.taskService.getStatus(index);
-    return st;
-  }
-
   getStatusTaskColor(status) {
     switch (status) {
       case 'new':

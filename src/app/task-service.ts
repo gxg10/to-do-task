@@ -1,14 +1,10 @@
 import { Task } from './task-model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
 
 @Injectable()
 export class TaskService {
 
-    taskChanged = new Subject<Task[]>();
-
-    // today: Date = new Date(Date.now());
     today: Date;
 
     constructor(private http: HttpClient) {
@@ -22,11 +18,11 @@ export class TaskService {
     // private tasks: Task[] = [
 
     //     new Task('Sa iei paine', 'paine graham feliata',
-    //     new Date('01.01.2018 20:30:11')),
+    //     new Date('2018.09.22 20:30:11')),
     //     new Task('Aspirator', 'curatenie de paste',
-    //     new Date('September 22, 2018, 21:20:00')),
+    //     new Date('2018.09.25 21:20:00')),
     //     new Task('Spalat Masina', 'curatenie de masina',
-    //     new Date('September 22, 2019, 21:20:00'))
+    //     new Date('2018.09.25 21:20:00'))
 
     //   ];
 
@@ -40,22 +36,19 @@ export class TaskService {
     }
 
     getTasks() {
-        return this.tasks.slice();
+        return this.tasks;
     }
 
     sortTasks() {
-
         if (this.tasks.length !== 0) {
             const sortedTasks = this.tasks.sort((a, b) =>
             new Date(a.due_date).getTime()
             - new Date(b.due_date).getTime());
             return sortedTasks;
         }
-
        }
 
-    setTasts(tasks: Task[]) {
-        console.log('am setat taskurile');
+    setTasks(tasks: Task[]) {
         this.tasks = tasks;
     }
 
@@ -65,8 +58,6 @@ export class TaskService {
 
     addTask(task: Task) {
         this.tasks.push(task);
-        this.taskChanged.next(this.tasks.slice());
-        console.log(task);
     }
 
     updateTask(index: number, newTask: Task) {
@@ -83,15 +74,7 @@ export class TaskService {
     }
 
     setOverdueTask(index: number) {
-        // const tempTask = this.tasks[index];
         this.tasks[index].status = 'overdue';
-        console.log(this.tasks[index].status);
-    }
-
-    getStatus(index: number) {
-        const tempTask = this.tasks[index];
-
-        return tempTask.status;
     }
 
     getTodayTime() {
@@ -99,13 +82,8 @@ export class TaskService {
     }
 
     checkIfOverdue() {
-        console.log('verificam');
-
         for (let i = 0; i < this.tasks.length; i++) {
-            // console.log('1' + new Date(this.today).getTime());
-            // console.log('2' + new Date(this.tasks[i].due_date).getTime());
             if (new Date(this.tasks[i].due_date).getTime() < new Date(this.today).getTime()) {
-                console.log('patata');
                 this.setOverdueTask(i);
             }
         }

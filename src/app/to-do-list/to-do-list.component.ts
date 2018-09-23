@@ -48,7 +48,7 @@ export class ToDoListComponent implements OnInit, DoCheck, OnChanges {
   getFromServer() {
     this.taskService.fetchFromServer().subscribe(
       (tasks: Task[]) => {
-        this.taskService.setTasts(tasks);
+        this.taskService.setTasks(tasks);
       }
     );
   }
