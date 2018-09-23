@@ -63,17 +63,13 @@ export class NewTaskComponent implements OnInit {
 
     let taskName = '';
     let small_description = '';
-    // let duedate = new Date();
-    // let duedate = new Date('').setTime(0);
     let duedate = '';
 
     if (this.editMode) {
      const task = this.taskService.getOneTask(this.id);
      taskName = task.name;
      small_description = task.small_description;
-     console.log('due date '+ this.datepipe.transform(task.due_date, 'yyyy.mm.dd hh:mm:ss'));
-    //  duedate = task.due_date.toString
-     duedate = this.datepipe.transform(new Date(task.due_date), 'yyyy-mm-dd hh:mm:ss');
+     duedate = this.datepipe.transform(new Date(task.due_date), 'yyyy.MM.dd hh:mm:ss');
     }
 
     this.taskForm = new FormGroup({
@@ -82,7 +78,6 @@ export class NewTaskComponent implements OnInit {
         [Validators.required, Validators.maxLength(20)]),
       'duedate' : new FormControl(duedate,
         [Validators.required, Validators.pattern(/^[A-Za-z0-9 _.,:!"'/$]*$/)])
-        // [Validators.required])
     });
   }
 
