@@ -76,7 +76,8 @@ export class NewTaskComponent implements OnInit {
       'small_description': new FormControl(small_description,
         [Validators.required, Validators.maxLength(20)]),
       'duedate' : new FormControl(duedate,
-        [Validators.required, Validators.pattern(/^[A-Za-z0-9 _.,:!"'/$]*$/)])
+        [Validators.required])
+        // [Validators.required, Validators.pattern(/^[A-Za-z0-9 _.,:!"'/$]*$/)])
     });
   }
 

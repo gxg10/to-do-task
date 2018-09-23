@@ -23,13 +23,14 @@ export class ToDoListComponent implements OnInit, DoCheck, OnChanges {
   }
 
   ngOnChanges() {
-    this.taskService.checkIfOverdue();  
+    this.taskService.checkIfOverdue();
   }
 
   ngDoCheck() {
     this.itemList = this.taskService.getTasks();
     this.today = this.taskService.getTodayTime();
     this.taskService.sortTasks();
+    // this.taskService.checkIfOverdue();
   }
 
   newTask() {
@@ -50,6 +51,10 @@ export class ToDoListComponent implements OnInit, DoCheck, OnChanges {
         this.taskService.setTasts(tasks);
       }
     );
+  }
+
+  test() {
+    this.taskService.checkIfOverdue();
   }
 
 }

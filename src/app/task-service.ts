@@ -5,9 +5,14 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class TaskService {
 
-    today: Date = new Date(Date.now());
+    // today: Date = new Date(Date.now());
+    today: Date;
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) {
+        setInterval(() => {
+            this.today =  new Date(Date.now());
+        }, 5000);
+    }
 
     private tasks: Task[] = [];
 
@@ -47,6 +52,7 @@ export class TaskService {
        }
 
     setTasts(tasks: Task[]) {
+        console.log('am setat taskurile');
         this.tasks = tasks;
     }
 
@@ -56,6 +62,7 @@ export class TaskService {
 
     addTask(task: Task) {
         this.tasks.push(task);
+        console.log(task);
     }
 
     updateTask(index: number, newTask: Task) {
@@ -72,8 +79,9 @@ export class TaskService {
     }
 
     setOverdueTask(index: number) {
-        const tempTask = this.tasks[index];
-        tempTask.status = 'overdue';
+        // const tempTask = this.tasks[index];
+        this.tasks[index].status = 'overdue';
+        console.log(this.tasks[index].status);
     }
 
     getStatus(index: number) {
@@ -87,8 +95,13 @@ export class TaskService {
     }
 
     checkIfOverdue() {
+        console.log('verificam');
+
         for (let i = 0; i < this.tasks.length; i++) {
-            if (this.tasks[i].due_date < this.today) {
+            console.log('1' + this.today);
+            console.log('2' + this.tasks[i].due_date);
+            if (this.tasks[i].due_date.getTime() < this.today.getTime()) {
+                console.log('patata');
                 this.setOverdueTask(i);
             }
         }
