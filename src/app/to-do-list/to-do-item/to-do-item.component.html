@@ -2,11 +2,9 @@
   <div class="card-body">
     <h5 class="card-title">{{it.name}}</h5>
     <h6 class="card-subtitle mb-2 text-muted">Due date: {{it.due_date | date : 'shortDate'}}</h6>
-    <h6 class="card-subtitle mb-2 text-muted">Status: {{it.status}}</h6>
 
     <a [routerLink]="[index]" type="button" routerLinkActive="active"
     class="btn btn-success">Read</a>
-    <button >Test</button>
   </div>
 </div>
 

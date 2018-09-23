@@ -25,6 +25,7 @@ export class ToDoListComponent implements OnInit, DoCheck {
     this.itemList = this.taskService.getTasks();
     this.today = this.taskService.getTodayTime();
     this.sort();
+    this.taskService.checkIfOverdue();
   }
 
   sort() {
@@ -37,6 +38,24 @@ export class ToDoListComponent implements OnInit, DoCheck {
 
   overd() {
     this.taskService.checkIfOverdue();
+  }
+
+  saveServer() {
+    this.taskService.storeOnServer().subscribe(
+      response => {
+        console.log(response);
+      }
+    );
+  }
+
+  getFromServer() {
+    this.taskService.fetchFromServer().subscribe(
+      (tasks: Task[]) => {
+        this.taskService.setTasts(tasks);
+        // this.itemList = tasks;
+        // console.log(tasks);
+      }
+    );
   }
 
 }

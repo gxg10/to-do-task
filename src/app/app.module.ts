@@ -9,6 +9,7 @@ import { NewTaskComponent } from './to-do-list/new-task/new-task.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TaskService } from './task-service';
 import { TaskDetailComponent } from './to-do-list/task-detail/task-detail.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TaskDetailComponent } from './to-do-list/task-detail/task-detail.compon
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [TaskService],
   bootstrap: [AppComponent]

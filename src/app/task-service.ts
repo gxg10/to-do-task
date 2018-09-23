@@ -1,9 +1,13 @@
 import { Task } from './task-model';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
-
+@Injectable()
 export class TaskService {
 
     today: Date = new Date(Date.now());
+
+    constructor(private http: HttpClient) {}
 
     private tasks: Task[] = [
 
@@ -16,6 +20,15 @@ export class TaskService {
 
       ];
 
+    storeOnServer() {
+        return this.http.put('https://to-do-list-b4785.firebaseio.com/tasks.json', 
+        this.getTasks());
+    }
+
+    fetchFromServer() {
+        return this.http.get('https://to-do-list-b4785.firebaseio.com/tasks.json');
+    }
+
     sortTasks() {
      const t = this.tasks.sort((a, b) =>
         new Date(a.due_date).getTime()
@@ -25,6 +38,10 @@ export class TaskService {
 
     getTasks() {
         return this.tasks;
+    }
+
+    setTasts(tasks: Task[]) {
+        this.tasks = tasks;
     }
 
     getOneTask(index: number) {
@@ -63,21 +80,11 @@ export class TaskService {
         return this.today;
     }
 
-    // checkIfOverdue() {
-    //     this.tasks.forEach( (task) => {
-    //         if (task.due_date < this.today) {
-    //             this.overdueTask(task);
-    //         }
-    //     })
-    // }
-
     checkIfOverdue() {
         for (let i = 0; i < this.tasks.length; i++) {
             if (this.tasks[i].due_date < this.today) {
                 this.overdueTask(i);
-                console.log(this.tasks[i]);
             }
-            
         }
     }
 
