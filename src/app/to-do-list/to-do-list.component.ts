@@ -40,7 +40,7 @@ export class ToDoListComponent implements OnInit, DoCheck, OnChanges {
   saveServer() {
     this.taskService.storeOnServer().subscribe(
       response => {
-        console.log(response);
+        // console.log(response);
       }
     );
   }
@@ -51,10 +51,6 @@ export class ToDoListComponent implements OnInit, DoCheck, OnChanges {
         this.taskService.setTasts(tasks);
       }
     );
-  }
-
-  test() {
-    this.taskService.checkIfOverdue();
   }
 
 }

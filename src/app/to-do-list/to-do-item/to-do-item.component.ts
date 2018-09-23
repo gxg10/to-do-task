@@ -12,25 +12,16 @@ export class ToDoItemComponent implements OnInit {
 
   @Input() it: Task;
   @Input() index: number;
-  
+
   constructor(private taskService: TaskService,
     private router: Router) { }
 
   ngOnInit() {
-    
+
   }
 
-  // ngOnChanges() {
-  //   this.taskService.checkIfOverdue();
-  // }
-
-  readTask() {
-  }
-
-  editTask(index: number) {
+  editTask() {
     this.router.navigate(['new-task']);
-    // console
-
   }
 
   deleteTask(index: number) {

@@ -49,7 +49,7 @@ export class NewTaskComponent implements OnInit {
       const small_desc = this.taskForm.value.small_description;
       const duedate = this.taskForm.value.duedate;
 
-      const n = new Task(name, small_desc, duedate);
+      const n = new Task(name, small_desc, new Date(duedate));
       this.taskService.addTask(n);
       this.taskForm.reset();
       this.router.navigate(['..']);
@@ -62,7 +62,7 @@ export class NewTaskComponent implements OnInit {
 
     let taskName = '';
     let small_description = '';
-    let duedate = new Date();
+    let duedate = new Date('').setTime(0);
 
     if (this.editMode) {
      const task = this.taskService.getOneTask(this.id);
@@ -76,8 +76,8 @@ export class NewTaskComponent implements OnInit {
       'small_description': new FormControl(small_description,
         [Validators.required, Validators.maxLength(20)]),
       'duedate' : new FormControl(duedate,
-        [Validators.required])
-        // [Validators.required, Validators.pattern(/^[A-Za-z0-9 _.,:!"'/$]*$/)])
+        [Validators.required, Validators.pattern(/^[A-Za-z0-9 _.,:!"'/$]*$/)])
+        // [Validators.required])
     });
   }
 

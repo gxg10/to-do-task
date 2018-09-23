@@ -24,12 +24,11 @@ export class TaskDetailComponent implements OnInit {
         this.id =  +params['id'];
         this.task = this.taskService.getOneTask(this.id);
       }
-    )
+    );
   }
 
-  editTask(index: number) {
+  editTask() {
     this.router.navigate(['new-task'], {relativeTo: this.route});
-    // console
 
   }
 
