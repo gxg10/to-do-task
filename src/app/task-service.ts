@@ -1,9 +1,12 @@
 import { Task } from './task-model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class TaskService {
+
+    taskChanged = new Subject<Task[]>();
 
     // today: Date = new Date(Date.now());
     today: Date;
@@ -37,7 +40,7 @@ export class TaskService {
     }
 
     getTasks() {
-        return this.tasks;
+        return this.tasks.slice();
     }
 
     sortTasks() {
@@ -62,6 +65,7 @@ export class TaskService {
 
     addTask(task: Task) {
         this.tasks.push(task);
+        this.taskChanged.next(this.tasks.slice());
         console.log(task);
     }
 
@@ -98,9 +102,9 @@ export class TaskService {
         console.log('verificam');
 
         for (let i = 0; i < this.tasks.length; i++) {
-            console.log('1' + this.today);
-            console.log('2' + this.tasks[i].due_date);
-            if (this.tasks[i].due_date.getTime() < this.today.getTime()) {
+            // console.log('1' + new Date(this.today).getTime());
+            // console.log('2' + new Date(this.tasks[i].due_date).getTime());
+            if (new Date(this.tasks[i].due_date).getTime() < new Date(this.today).getTime()) {
                 console.log('patata');
                 this.setOverdueTask(i);
             }
