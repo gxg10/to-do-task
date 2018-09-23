@@ -15,17 +15,6 @@ export class TaskService {
 
     private tasks: Task[] = [];
 
-    // private tasks: Task[] = [
-
-    //     new Task('Sa iei paine', 'paine graham feliata',
-    //     new Date('2018.09.22 20:30:11')),
-    //     new Task('Aspirator', 'curatenie de paste',
-    //     new Date('2018.09.25 21:20:00')),
-    //     new Task('Spalat Masina', 'curatenie de masina',
-    //     new Date('2018.09.25 21:20:00'))
-
-    //   ];
-
     storeOnServer() {
         return this.http.put('https://to-do-list-b4785.firebaseio.com/tasks.json',
         this.getTasks());

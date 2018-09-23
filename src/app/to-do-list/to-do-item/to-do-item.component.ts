@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Task } from '../../task-model';
 import { TaskService } from '../../task-service';
 import { Router } from '@angular/router';
@@ -14,7 +14,7 @@ export class ToDoItemComponent implements OnInit {
   @Input() index: number;
 
   constructor(private taskService: TaskService,
-    private router: Router) { }
+              private router: Router) { }
 
   ngOnInit() {
 

@@ -18,9 +18,9 @@ export class NewTaskComponent implements OnInit {
   id: number;
 
   constructor(private taskService: TaskService,
-    private router: Router,
-    private route: ActivatedRoute,
-    public datepipe: DatePipe) { }
+              private router: Router,
+              private route: ActivatedRoute,
+              public datepipe: DatePipe) { }
 
   ngOnInit() {
     this.route.params

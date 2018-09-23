@@ -14,8 +14,8 @@ export class TaskDetailComponent implements OnInit {
   id: number;
 
   constructor(private taskService: TaskService,
-    private route: ActivatedRoute,
-    private router: Router) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.route.params
@@ -29,7 +29,6 @@ export class TaskDetailComponent implements OnInit {
 
   editTask() {
     this.router.navigate(['new-task'], {relativeTo: this.route});
-
   }
 
   deleteTask(index: number) {
