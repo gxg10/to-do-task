@@ -21,7 +21,7 @@ export class TaskService {
       ];
 
     storeOnServer() {
-        return this.http.put('https://to-do-list-b4785.firebaseio.com/tasks.json', 
+        return this.http.put('https://to-do-list-b4785.firebaseio.com/tasks.json',
         this.getTasks());
     }
 
@@ -29,16 +29,16 @@ export class TaskService {
         return this.http.get('https://to-do-list-b4785.firebaseio.com/tasks.json');
     }
 
-    sortTasks() {
-     const t = this.tasks.sort((a, b) =>
-        new Date(a.due_date).getTime()
-        - new Date(b.due_date).getTime());
-        return t;
-    }
-
     getTasks() {
         return this.tasks;
     }
+
+    sortTasks() {
+        const sortedTasks = this.tasks.sort((a, b) =>
+           new Date(a.due_date).getTime()
+           - new Date(b.due_date).getTime());
+           return sortedTasks;
+       }
 
     setTasts(tasks: Task[]) {
         this.tasks = tasks;
@@ -60,7 +60,7 @@ export class TaskService {
         this.tasks.splice(index, 1);
     }
 
-    doneTask(index: number) {
+    setDoneTask(index: number) {
         const tempTask = this.tasks[index];
         tempTask.status = 'done';
     }

@@ -1,4 +1,5 @@
-<div class="card" [ngStyle]="{'background-color': getStatusTaskColor(it.status)}">
+<div class="card casuta-card" 
+[ngStyle]="{'background-color': getStatusTaskColor(it.status)}">
   <div class="card-body">
     <h5 class="card-title">{{it.name}}</h5>
     <h6 class="card-subtitle mb-2 text-muted">Due date: {{it.due_date | date : 'shortDate'}}</h6>

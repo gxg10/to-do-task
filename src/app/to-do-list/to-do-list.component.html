@@ -1,18 +1,18 @@
   <div class="row">
-    <div class="col-sm-8 offset-md-4">
+    <div class="col-sm-8 offset-sm-1">
       <h1><span class="badge badge-secondary">To do list</span></h1>
     </div>
   </div>
   <br>
   <div class="row">
-    <div class="com-sm-4 offset-md-4">
+    <div class="com-sm-4 offset-sm-1">
         <div class="btn-toolbar mb-3">
             <button class="btn btn-primary" (click)="newTask()">New</button> 
             <button class="btn btn-success" (click)="saveServer()">Save on server</button> 
             <button class="btn btn-danger" (click)="getFromServer()">Get from server</button>
         </div>
-        
-        <p>today is {{today | date: 'medium'}}</p>
+        <h4><span class="badge badge-secondary">
+          today is {{today | date: 'medium'}}</span></h4>
     </div>
   </div>
   <br>

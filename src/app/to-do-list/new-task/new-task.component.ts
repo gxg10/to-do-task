@@ -62,7 +62,7 @@ export class NewTaskComponent implements OnInit {
 
     let taskName = '';
     let small_description = '';
-    let duedate = new Date('');
+    let duedate = new Date();
 
     if (this.editMode) {
      const task = this.taskService.getOneTask(this.id);

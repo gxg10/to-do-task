@@ -39,7 +39,7 @@ export class TaskDetailComponent implements OnInit {
   }
 
   markDone() {
-    this.taskService.doneTask(this.id);
+    this.taskService.setDoneTask(this.id);
     this.router.navigate(['/']);
   }
 
