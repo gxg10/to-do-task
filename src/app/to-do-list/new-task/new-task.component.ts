@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NgForm, FormGroup, FormControl } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Task } from '../../task-model';
 import { TaskService } from '../../task-service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -31,16 +31,6 @@ export class NewTaskComponent implements OnInit {
     );
   }
 
-  // addTask(form: NgForm) {
-  //   const name = form.value.name;
-  //   const small_description = form.value.small_description;
-  //   const duedate = form.value.duedate;
-  //   const n =  new Task(name, small_description, duedate);
-  //   console.log(n);
-  //   this.taskService.addTask(n);
-  //   this.router.navigate(['/']);
-  // }
-
   onSubmit() {
 
     if (this.editMode) {
@@ -52,8 +42,8 @@ export class NewTaskComponent implements OnInit {
       const n = new Task(name, small_desc, duedate);
 
       this.taskService.updateTask(this.id, n);
+      this.router.navigate(['..']);
     } else {
-      console.log(this.taskForm.value);
 
       const name = this.taskForm.value.name;
       const small_desc = this.taskForm.value.small_description;
@@ -61,6 +51,8 @@ export class NewTaskComponent implements OnInit {
 
       const n = new Task(name, small_desc, duedate);
       this.taskService.addTask(n);
+      this.taskForm.reset();
+      this.router.navigate(['..']);
     }
 
 
@@ -80,9 +72,11 @@ export class NewTaskComponent implements OnInit {
     }
 
     this.taskForm = new FormGroup({
-      'name' : new FormControl(taskName),
-      'small_description': new FormControl(small_description),
-      'duedate' : new FormControl(duedate)
+      'name' : new FormControl(taskName, Validators.required),
+      'small_description': new FormControl(small_description,
+        [Validators.required, Validators.maxLength(20)]),
+      'duedate' : new FormControl(duedate,
+        [Validators.required, Validators.pattern(/^[A-Za-z0-9 _.,:!"'/$]*$/)])
     });
   }
 

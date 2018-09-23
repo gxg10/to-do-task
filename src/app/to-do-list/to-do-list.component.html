@@ -1,14 +1,17 @@
   <div class="row">
     <div class="col-sm-8 offset-md-4">
-      <h2>To do list</h2>
+      <h1><span class="badge badge-secondary">To do list</span></h1>
     </div>
   </div>
   <br>
   <div class="row">
     <div class="com-sm-4 offset-md-4">
-        <button class="btn" (click)="newTask()">New</button> 
-        <button class="btn" (click)="saveServer()">Save</button> 
-        <button class="btn" (click)="getFromServer()">get</button>
+        <div class="btn-toolbar mb-3">
+            <button class="btn btn-primary" (click)="newTask()">New</button> 
+            <button class="btn btn-success" (click)="saveServer()">Save on server</button> 
+            <button class="btn btn-danger" (click)="getFromServer()">Get from server</button>
+        </div>
+        
         <p>today is {{today | date: 'medium'}}</p>
     </div>
   </div>

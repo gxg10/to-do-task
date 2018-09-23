@@ -52,8 +52,6 @@ export class ToDoListComponent implements OnInit, DoCheck {
     this.taskService.fetchFromServer().subscribe(
       (tasks: Task[]) => {
         this.taskService.setTasts(tasks);
-        // this.itemList = tasks;
-        // console.log(tasks);
       }
     );
   }
