@@ -13,10 +13,14 @@
         </div>
         <h4><span class="badge badge-secondary">
           today is {{today | date: 'medium'}}</span></h4>
+          <p *ngIf="itemList.length === 0">
+          <span class="badge badge-pill badge-light">
+            No tasks. Get tasks from server</span> </p>  
     </div>
   </div>
   <br>
   <div class="row">
+        
         <app-to-do-item *ngFor="let item of itemList ; let i = index"
         [it]="item" [index]="i"></app-to-do-item>
   </div>

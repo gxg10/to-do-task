@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Task } from '../../task-model';
 import { TaskService } from '../../task-service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-to-do-item',
@@ -17,7 +17,12 @@ export class ToDoItemComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    
   }
+
+  // ngOnChanges() {
+  //   this.taskService.checkIfOverdue();
+  // }
 
   readTask() {
   }

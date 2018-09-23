@@ -9,16 +9,18 @@ export class TaskService {
 
     constructor(private http: HttpClient) {}
 
-    private tasks: Task[] = [
+    private tasks: Task[] = [];
 
-        new Task('Sa iei paine', 'paine graham feliata',
-        new Date('December 4, 2008, 20:30:00')),
-        new Task('Aspirator', 'curatenie de paste',
-        new Date('September 22, 2018, 21:20:00')),
-        new Task('Spalat Masina', 'curatenie de masina',
-        new Date('September 22, 2019, 21:20:00'))
+    // private tasks: Task[] = [
 
-      ];
+    //     new Task('Sa iei paine', 'paine graham feliata',
+    //     new Date('01.01.2018 20:30:11')),
+    //     new Task('Aspirator', 'curatenie de paste',
+    //     new Date('September 22, 2018, 21:20:00')),
+    //     new Task('Spalat Masina', 'curatenie de masina',
+    //     new Date('September 22, 2019, 21:20:00'))
+
+    //   ];
 
     storeOnServer() {
         return this.http.put('https://to-do-list-b4785.firebaseio.com/tasks.json',
@@ -34,10 +36,14 @@ export class TaskService {
     }
 
     sortTasks() {
-        const sortedTasks = this.tasks.sort((a, b) =>
-           new Date(a.due_date).getTime()
-           - new Date(b.due_date).getTime());
-           return sortedTasks;
+
+        if (this.tasks.length !== 0) {
+            const sortedTasks = this.tasks.sort((a, b) =>
+            new Date(a.due_date).getTime()
+            - new Date(b.due_date).getTime());
+            return sortedTasks;
+        }
+
        }
 
     setTasts(tasks: Task[]) {
@@ -65,7 +71,7 @@ export class TaskService {
         tempTask.status = 'done';
     }
 
-    overdueTask(index: number) {
+    setOverdueTask(index: number) {
         const tempTask = this.tasks[index];
         tempTask.status = 'overdue';
     }
@@ -83,7 +89,7 @@ export class TaskService {
     checkIfOverdue() {
         for (let i = 0; i < this.tasks.length; i++) {
             if (this.tasks[i].due_date < this.today) {
-                this.overdueTask(i);
+                this.setOverdueTask(i);
             }
         }
     }

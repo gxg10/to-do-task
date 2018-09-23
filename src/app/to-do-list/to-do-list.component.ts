@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck, OnChanges } from '@angular/core';
 import { Task } from '../task-model';
 import { Router } from '@angular/router';
 import { TaskService } from '../task-service';
@@ -8,7 +8,7 @@ import { TaskService } from '../task-service';
   templateUrl: './to-do-list.component.html',
   styleUrls: ['./to-do-list.component.css']
 })
-export class ToDoListComponent implements OnInit, DoCheck {
+export class ToDoListComponent implements OnInit, DoCheck, OnChanges {
 
   itemList: Task[] = [];
   today: Date;
@@ -18,26 +18,22 @@ export class ToDoListComponent implements OnInit, DoCheck {
 
   ngOnInit() {
     this.itemList = this.taskService.getTasks();
-    this.sort();
+    this.taskService.sortTasks();
+    this.taskService.checkIfOverdue();
+  }
+
+  ngOnChanges() {
+    this.taskService.checkIfOverdue();  
   }
 
   ngDoCheck() {
     this.itemList = this.taskService.getTasks();
     this.today = this.taskService.getTodayTime();
-    this.sort();
-    this.taskService.checkIfOverdue();
-  }
-
-  sort() {
-   this.taskService.sortTasks();
+    this.taskService.sortTasks();
   }
 
   newTask() {
     this.router.navigate(['new-task']);
-  }
-
-  overd() {
-    this.taskService.checkIfOverdue();
   }
 
   saveServer() {
